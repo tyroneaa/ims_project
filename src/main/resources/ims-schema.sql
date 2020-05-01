@@ -1,0 +1,24 @@
+USE ims;
+CREATE TABLE customers(
+customerID INT PRIMARY KEY AUTO_INCREMENT,
+firstName VARCHAR(255),
+lastName VARCHAR(255)
+);
+CREATE TABLE items(
+itemID INT PRIMARY KEY AUTO_INCREMENT,
+itemName VARCHAR(255),
+itemValue DOUBLE
+);
+CREATE TABLE orders(
+orderID INT PRIMARY KEY AUTO_INCREMENT,
+customerID INT,
+FOREIGN KEY (customerID) REFERENCES customers(customerID)
+);
+CREATE TABLE orderItems(
+orderItemID INT PRIMARY KEY AUTO_INCREMENT,
+orderID INT,
+itemID INT,
+quantity INT,
+FOREIGN KEY (orderID) REFERENCES orders(orderID),
+FOREIGN KEY (itemID) REFERENCES items(itemID)
+);
